@@ -21,6 +21,7 @@ CreateWorkspace({name = "gm_reconnect", abi_compatible = false})
     CreateProject({serverside = true, manual_files = false})
         -- Remove some or all of these includes if they're not needed
         --IncludeLuaShared()
+        IncludeHelpersExtended()
         IncludeSDKCommon()
         IncludeSDKTier0()
         IncludeSDKTier1()
