@@ -1,9 +1,9 @@
 name: Build
 
 on: [push, pull_request, workflow_dispatch]
-  
+
 env:
-  PROJECT_NAME: "gm_reconnect"
+  PROJECT_NAME: "reconnect"
   BUILD_64x: "false"
   REALM: "sv"
   FINAL_REALM: "sv"
@@ -26,7 +26,7 @@ jobs:
         repository: danielga/garrysmod_common
         ref: x86-64-support-sourcesdk
         path: 'garrysmod_common'
-        
+  
     - name: Install Premake
       run: |
         wget https://github.com/danielga/garrysmod_common/releases/download/premake-build%2F5.0.0-beta2/premake-5.0.0-beta2-linux.tar.gz -O premake.tar.gz
