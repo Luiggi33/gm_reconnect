@@ -2,6 +2,7 @@
 
 #include <GarrysMod/InterfacePointers.hpp>
 
+#include <iclient.h>
 #include <iserver.h>
 
 static IServer* server = nullptr;
