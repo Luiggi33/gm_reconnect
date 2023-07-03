@@ -5,8 +5,19 @@
 
 static IServer* server = nullptr;
 
+void LuaPrint(GarrysMod::Lua::ILuaBase* LUA, char* msg)
+{
+	LUA->PushSpecial(GarrysMod::Lua::SPECIAL_GLOB);
+		LUA->GetField(-1, "print");
+		LUA->PushString(msg);
+		LUA->Call(1, 0);
+	LUA->Pop();
+}
+
 LUA_FUNCTION( ReconnectPlayer )
 {
+	LuaPrint(LUA, "ReconnectPlayer called");
+
 	LUA->CheckType( 1, GarrysMod::Lua::Type::Number );
 	int entIndex = (LUA->GetNumber( 1 ));
 
@@ -14,6 +25,7 @@ LUA_FUNCTION( ReconnectPlayer )
 
 	if (player == nullptr) {
 		LUA->ThrowError("Invalid client given");
+		return 0;
 	}
 
 	if (!player->IsFakeClient()) {
@@ -34,9 +46,11 @@ GMOD_MODULE_OPEN()
 		return 0;
 	}
 
+	LuaPrint(LUA, "ReconnectPlayer module loaded");
+
 	LUA->PushSpecial(GarrysMod::Lua::SPECIAL_GLOB);
-	LUA->PushCFunction(ReconnectPlayer);
-	LUA->SetField(-2, "ReconnectPlayer");
+		LUA->PushCFunction(ReconnectPlayer);
+		LUA->SetField(-2, "ReconnectPlayer");
 	LUA->Pop();
 
 	return 0;
