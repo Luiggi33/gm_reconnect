@@ -25,11 +25,6 @@ LUA_FUNCTION( ReconnectPlayer )
 		return 0;
 	}
 
-	if (server == nullptr) {
-		LUA->ThrowError("Failed to dereference IServer");
-		return 0;
-	}
-
 	if (player->IsFakeClient()) {
 		LUA->PushBool(false);
 	} else {
